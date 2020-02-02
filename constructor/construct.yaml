@@ -1,0 +1,39 @@
+name: pyiron-0.2.10_build
+version: 0.2.10
+
+channels:
+  - https://conda.anaconda.org/conda-forge
+  - https://repo.anaconda.com/pkgs/main
+  - https://conda.anaconda.org/pyiron [win]
+
+specs:
+  - python >=3.6
+  - conda
+  - notebook
+  - jupyterlab
+  - nodejs
+  - nglview =2.7.1
+  - pyiron =0.2.10
+  - lammps
+
+post_install: post_build_win.bat [win]
+post_install: post_build_linux.sh [linux]
+post_install: post_build_mac.sh [osx]
+ignore_duplicate_files: True
+install_in_dependency_order: True
+conda_default_channels:
+  - https://conda.anaconda.org/conda-forge
+  - https://repo.anaconda.com/pkgs/main
+  - https://conda.anaconda.org/pyiron [win]
+
+license_file: EULA.txt
+
+welcome_image: pyiron.png [win]
+
+register_python_default: True [win]
+initialize_by_default: True
+
+# Linux and Windows are the defaults, but macOS uses pkg instead of sh
+installer_type: sh [linux]
+installer_type: pkg [osx]
+installer_type: exe [win]

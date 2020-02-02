@@ -1,0 +1,67 @@
+environment:
+  global:
+    # SDK v7.0 MSVC Express 2008's SetEnv.cmd script will fail if the
+    # /E:ON and /V:ON options are not enabled in the batch script intepreter
+    # See: http://stackoverflow.com/a/13751649/163740
+    CMD_IN_ENV: 'cmd /E:ON /V:ON /C .\tools\appveyor\run_with_env.cmd'
+    PROJECT_NAME: pyiron
+
+  matrix:
+    - PYTHON_VERSION: 3.7
+      CONDA: C:\Miniconda37
+
+version: '{build}'
+image: Visual Studio 2015
+
+# For testing only...
+#skip_non_tags: true
+
+platform:
+- x64
+
+init:
+  - ps: if ($Env:PLATFORM -eq "x64") { $Env:CONDA = "${Env:CONDA}-x64" }
+  - ps: Write-Host $Env:PYTHON_VERSION
+  - ps: Write-Host $Env:CONDA
+  - ps: Write-Host $Env:PLATFORM
+  - ps: Write-Host $Env:APPVEYOR_REPO_TAG
+  - ps: Write-Host $Env:APPVEYOR_REPO_TAG_NAME
+  - ps: Write-Host $Env:APPVEYOR_REPO_NAME
+
+cache:
+  - "C:\\condacache\\pkgs"
+
+install:
+  - appveyor DownloadFile https://repo.anaconda.com/pkgs/misc/conda-execs/conda-latest-win-64.exe -FileName loner_conda.exe
+  - set "CONDA_PKGS_DIRS=C:\condacache\pkgs"
+  - set "CONDA_ALWAYS_YES=true"
+  - set "CONDA_AUTO_UPDATE_CONDA=false"
+  - loner_conda.exe create -q -p C:\test_conda conda python=%PYTHON_VERSION% constructor
+  - call C:\test_conda\Scripts\activate
+  - "conda info -a"
+  - "conda config --set always_yes yes --set changeps1 no"
+  - "conda update -q conda"
+
+build: false
+
+test_script:
+  # Build the package
+  - call C:\test_conda\Scripts\activate
+  - "mkdir build"
+  - "constructor -v --output-dir=build --platform=win-64 constructor"
+  
+artifacts:
+  - path: build\pyiron-*.exe
+    name: pyiron
+
+deploy:
+  release: 0.2.10
+  description: 'Release description'
+  provider: GitHub
+  auth_token:
+    secure: JqmWubnRscCGBr0sjFUQ/CfUIwx/f86OftpGrjS4iKsUsV7g2P+9F4F2zTq2YmXK
+  draft: false
+  prerelease: false
+  force_update: true
+  on:
+    branch: master
