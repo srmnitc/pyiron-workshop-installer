@@ -9,9 +9,9 @@ channels:
 specs:
   - python =3.8 [linux|osx]
   - python =3.6 [win]
-  - conda =4.8.3
-  - notebook [linux|osx]
-  - jupyterlab [linux|osx]
+  - conda
+  - notebook
+  - jupyterlab
   - nglview =2.7.5
   - pyiron =0.2.11
   - sphinxdft =2.6.1=h6ced99e_5 [linux]
