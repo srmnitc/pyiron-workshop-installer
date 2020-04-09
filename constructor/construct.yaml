@@ -10,7 +10,7 @@ specs:
   - python =3.8
   - conda =4.8.3
   - notebook
-  - jupyterlab =2.1.0 [linux|osx]
+  - jupyterlab
   - jupyter_client =6.1.2 [linux|osx]
   - tornado =6.0.4 [linux|osx]
   - nodejs =13.12.0 [linux|osx]
