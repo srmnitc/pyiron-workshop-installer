@@ -39,6 +39,7 @@ install:
   - loner_conda.exe create -q -p C:\test_conda conda python=%PYTHON_VERSION% constructor
   - call C:\test_conda\Scripts\activate
   - "conda info -a"
+  - "conda config --add channels conda-forge"
   - "conda config --set always_yes yes --set changeps1 no"
   - "conda update -q conda"
 
