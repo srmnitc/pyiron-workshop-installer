@@ -1,5 +1,5 @@
-name: pyiron-0.2.10_build
-version: 0.2.10
+name: pyiron-0.2.11_build
+version: 0.2.11
 
 channels:
   - https://conda.anaconda.org/conda-forge
@@ -13,7 +13,8 @@ specs:
   - jupyterlab
   - nodejs
   - nglview =2.7.5
-  - pyiron =0.2.10
+  - pyiron =0.2.11
+  - sphinxdft =2.6.1=h6ced99e_5 [linux]
   - lammps
 
 post_install: post_build_win.bat [win]
