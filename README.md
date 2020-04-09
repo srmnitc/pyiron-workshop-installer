@@ -3,3 +3,5 @@
 [![Build Status](https://travis-ci.org/pyiron/pyiron-installer.svg?branch=master)](https://travis-ci.org/pyiron/pyiron-installer)
 
 https://github.com/pyiron/pyiron-installer/releases
+
+![Preview](install.gif)
