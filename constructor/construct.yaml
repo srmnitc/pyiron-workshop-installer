@@ -11,7 +11,7 @@ specs:
   - conda =4.8.3
   - notebook [linux|osx]
   - jupyterlab [linux|osx]
-  - nglview =2.7.5 [linux|osx]
+  - nglview =2.7.5
   - pyiron =0.2.11
   - sphinxdft =2.6.1=h6ced99e_5 [linux]
   - lammps =2020.03.03 [linux|osx]
