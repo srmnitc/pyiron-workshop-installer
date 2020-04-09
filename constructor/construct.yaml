@@ -8,18 +8,19 @@ channels:
 
 specs:
   - python =3.8
-  - conda
-  - notebook
-  - jupyterlab
-  - nodejs
-  - matplotlib
-  - numpy 
-  - pandas
-  - ipykernel
+  - conda =4.8.3
+  - notebook =6.0.3
+  - jupyterlab =2.1.0
+  - nodejs =13.12.0
+  - matplotlib =3.2.1
+  - numpy =1.18.1
+  - pandas =1.0.3
+  - ipykernel =5.2.0
   - nglview =2.7.5
   - pyiron =0.2.11
   - sphinxdft =2.6.1=h6ced99e_5 [linux]
-  - lammps
+  - lammps =2020.03.03 [linux|osx]
+  - lammps =2018.03.16 [win]
 
 post_install: post_build_win.bat [win]
 post_install: post_build_linux.sh [linux]
