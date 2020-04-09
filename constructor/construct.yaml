@@ -12,6 +12,10 @@ specs:
   - notebook
   - jupyterlab
   - nodejs
+  - matplotlib
+  - numpy 
+  - pandas
+  - ipykernel
   - nglview =2.7.5
   - pyiron =0.2.11
   - sphinxdft =2.6.1=h6ced99e_5 [linux]
