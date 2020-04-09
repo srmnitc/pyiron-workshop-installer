@@ -5,3 +5,14 @@
 https://github.com/pyiron/pyiron-installer/releases
 
 ![Preview](install.gif)
+
+# Remark 
+After the installation completed successfully run the following commands
+
+## Windows 
+
+  activate 
+  
+## Linux/ MacOS 
+
+   source activate
