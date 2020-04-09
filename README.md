@@ -10,9 +10,10 @@ https://github.com/pyiron/pyiron-installer/releases
 After the installation completed successfully run the following commands
 
 ## Windows 
-
-  activate 
-  
+```
+activate 
+```  
 ## Linux/ MacOS 
-
-   source activate
+```
+source activate
+```
