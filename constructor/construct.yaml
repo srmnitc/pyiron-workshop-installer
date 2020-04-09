@@ -12,7 +12,7 @@ specs:
   - notebook
   - jupyterlab
   - nodejs
-  - nglview =2.7.1
+  - nglview =2.7.5
   - pyiron =0.2.10
   - lammps
 
