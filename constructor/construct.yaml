@@ -7,7 +7,7 @@ channels:
   - https://conda.anaconda.org/pyiron [win]
 
 specs:
-  - python >=3.6
+  - python =3.7
   - conda
   - notebook
   - jupyterlab
