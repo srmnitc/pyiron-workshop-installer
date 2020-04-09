@@ -9,7 +9,7 @@ channels:
 specs:
   - python =3.8
   - conda =4.8.3
-  - notebook =6.0.3
+  - notebook
   - jupyterlab =2.1.0 [linux|osx]
   - jupyter_client =6.1.2 [linux|osx]
   - tornado =6.0.4 [linux|osx]
