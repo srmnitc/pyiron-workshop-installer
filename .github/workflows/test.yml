@@ -138,7 +138,7 @@ jobs:
     - name: Get Release File Name & Upload URL
       id: get_release_info
       run: |
-        value = Get-Content release_url/release_url.txt
+        $value = Get-Content release_url/release_url.txt
         echo ::set-output name=upload_url::$value
     - name: Upload Release Asset
       id: upload-release-asset
