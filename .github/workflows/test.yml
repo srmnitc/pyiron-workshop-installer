@@ -4,13 +4,14 @@ on:
   push:
     branches: [ master ]
 
+env:
+  release: 0.3.10
+
 jobs:
   createrelease:
     name: createrelease
     runs-on: ubuntu-latest
-    env:
-      release: 0.3.10
-
+    
     steps:
     - name: Check out code
       uses: actions/checkout@v1
@@ -32,13 +33,10 @@ jobs:
         name: release_url
         path: release_url.txt
 
-
   build_linux:
     name: Linux 
     needs: [createrelease]
     runs-on: ubuntu-latest
-    env:
-      release: 0.3.10
 
     steps:
     - name: Download release_url
@@ -79,8 +77,6 @@ jobs:
     name: MacOsX
     needs: [createrelease]
     runs-on: macos-latest
-    env:
-      release: 0.3.10
 
     steps:
     - uses: actions/checkout@v2
@@ -117,8 +113,6 @@ jobs:
     name: Windows
     needs: [createrelease]
     runs-on: windows-latest
-    env:
-      release: 0.3.10
 
     steps:
     - uses: actions/checkout@v2
