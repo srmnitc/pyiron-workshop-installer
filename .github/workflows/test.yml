@@ -1,0 +1,146 @@
+name: Python package
+
+on:
+  push:
+    branches: [ master ]
+    tags:
+    - '*'
+
+jobs:
+  createrelease:
+    name: createrelease
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v1
+    - name: create release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+    - name: Output Release URL File
+      run: echo "${{ steps.create_release.outputs.upload_url }}" > release_url.txt
+    - name: Save Release URL File for publish
+      uses: actions/upload-artifact@v1
+      with:
+        name: release_url
+        path: release_url.txt
+
+
+  build_linux:
+    name: Linux 
+    needs: [createrelease]
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download release_url
+      uses: actions/download-artifact@v2
+      with:
+        name: release_url
+    - uses: actions/checkout@v2
+    - name: Setup conda
+      uses: s-weigand/setup-conda@v1
+      with:
+        update-conda: true
+        python-version: 3.7
+        conda-channels: anaconda, conda-forge
+    - run: conda install -y -c conda-forge constructor
+    - run: mkdir build
+    - run: constructor -v --output-dir=build --platform="linux-64" constructor
+    - name: Load Release URL File from release job
+      uses: actions/download-artifact@v1
+      with:
+        name: release_url
+    - name: Get Release File Name & Upload URL
+      id: get_release_info
+      run: |
+        value=`cat release_url/release_url.txt`
+        echo ::set-output name=upload_url::$value
+    - name: Upload Release Asset
+      id: upload-release-asset
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.get_release_info.outputs.upload_url }}
+        asset_path: ./build/pyiron-${{ github.ref }}_build-${{ github.ref }}-Linux-x86_64.sh
+        asset_name: pyiron-${{ github.ref }}_build-${{ github.ref }}-Linux-x86_64.sh
+        asset_content_type: application/zip
+
+  build_mac:
+    name: MacOsX
+    needs: [createrelease]
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup conda
+      uses: s-weigand/setup-conda@v1
+      with:
+        update-conda: true
+        python-version: 3.7
+        conda-channels: anaconda, conda-forge
+    - run: conda install -y -c conda-forge constructor
+    - run: mkdir build
+    - run: constructor -v --output-dir=build --platform="osx-64" constructor
+    - name: Load Release URL File from release job
+      uses: actions/download-artifact@v1
+      with:
+        name: release_url
+    - name: Get Release File Name & Upload URL
+      id: get_release_info
+      run: |
+        value=`cat release_url/release_url.txt`
+        echo ::set-output name=upload_url::$value
+    - name: Upload Release Asset
+      id: upload-release-asset
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.get_release_info.outputs.upload_url }}
+        asset_path: ./build/pyiron-${{ github.ref }}_build-${{ github.ref }}-MacOSX-x86_64.pkg
+        asset_name: pyiron-${{ github.ref }}_build-${{ github.ref }}-MacOSX-x86_64.pkg 
+        asset_content_type: application/zip
+
+  build_win:
+    name: Windows
+    needs: [createrelease]
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup conda
+      uses: s-weigand/setup-conda@v1
+      with:
+        update-conda: true
+        python-version: 3.7
+        conda-channels: anaconda, conda-forge
+    - run: conda install -y -c conda-forge constructor
+    - run: mkdir build
+    - run: constructor -v --output-dir=build --platform="win-64" constructor
+    - name: Load Release URL File from release job
+      uses: actions/download-artifact@v1
+      with:
+        name: release_url
+    - name: Get Release File Name & Upload URL
+      id: get_release_info
+      run: |
+        value=`cat release_url/release_url.txt`
+        echo ::set-output name=upload_url::$value
+    - name: Upload Release Asset
+      id: upload-release-asset
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.get_release_info.outputs.upload_url }}
+        asset_path: ./build/pyiron-${{ github.ref }}_build-${{ github.ref }}-Windows-x86_64.exe
+        asset_name: pyiron-${{ github.ref }}_build-${{ github.ref }}-Windows-x86_64.exe
+        asset_content_type: application/zip
