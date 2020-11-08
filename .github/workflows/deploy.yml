@@ -39,10 +39,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Download release_url
-      uses: actions/download-artifact@v2
-      with:
-        name: release_url
     - uses: actions/checkout@v2
     - name: Setup conda
       uses: s-weigand/setup-conda@v1
