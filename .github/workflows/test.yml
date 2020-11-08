@@ -10,6 +10,8 @@ jobs:
   createrelease:
     name: createrelease
     runs-on: ubuntu-latest
+    env:
+      release: 0.3.10
 
     steps:
     - name: Check out code
@@ -20,8 +22,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
+        tag_name: ${{ release }}
+        release_name: Release ${{ release }}
         draft: false
         prerelease: false
     - name: Output Release URL File
@@ -37,6 +39,8 @@ jobs:
     name: Linux 
     needs: [createrelease]
     runs-on: ubuntu-latest
+    env:
+      release: 0.3.10
 
     steps:
     - name: Download release_url
@@ -69,14 +73,16 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.get_release_info.outputs.upload_url }}
-        asset_path: ./build/pyiron-${{ github.ref }}_build-${{ github.ref }}-Linux-x86_64.sh
-        asset_name: pyiron-${{ github.ref }}_build-${{ github.ref }}-Linux-x86_64.sh
+        asset_path: ./build/pyiron-${{ release }}_build-${{ release }}-Linux-x86_64.sh
+        asset_name: pyiron-${{ release }}_build-${{ release }}-Linux-x86_64.sh
         asset_content_type: application/zip
 
   build_mac:
     name: MacOsX
     needs: [createrelease]
     runs-on: macos-latest
+    env:
+      release: 0.3.10
 
     steps:
     - uses: actions/checkout@v2
@@ -105,14 +111,16 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.get_release_info.outputs.upload_url }}
-        asset_path: ./build/pyiron-${{ github.ref }}_build-${{ github.ref }}-MacOSX-x86_64.pkg
-        asset_name: pyiron-${{ github.ref }}_build-${{ github.ref }}-MacOSX-x86_64.pkg 
+        asset_path: ./build/pyiron-${{ release }}_build-${{ release }}-MacOSX-x86_64.pkg
+        asset_name: pyiron-${{ release }}_build-${{ release }}-MacOSX-x86_64.pkg 
         asset_content_type: application/zip
 
   build_win:
     name: Windows
     needs: [createrelease]
     runs-on: windows-latest
+    env:
+      release: 0.3.10
 
     steps:
     - uses: actions/checkout@v2
@@ -141,6 +149,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.get_release_info.outputs.upload_url }}
-        asset_path: ./build/pyiron-${{ github.ref }}_build-${{ github.ref }}-Windows-x86_64.exe
-        asset_name: pyiron-${{ github.ref }}_build-${{ github.ref }}-Windows-x86_64.exe
+        asset_path: ./build/pyiron-${{ release }}_build-${{ release }}-Windows-x86_64.exe
+        asset_name: pyiron-${{ release }}_build-${{ release }}-Windows-x86_64.exe
         asset_content_type: application/zip
