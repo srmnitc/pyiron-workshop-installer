@@ -20,8 +20,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ release }}
-        release_name: Release ${{ release }}
+        tag_name: ${release}
+        release_name: Release ${release}
         draft: false
         prerelease: false
     - name: Output Release URL File
@@ -71,8 +71,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.get_release_info.outputs.upload_url }}
-        asset_path: ./build/pyiron-${{ release }}_build-${{ release }}-Linux-x86_64.sh
-        asset_name: pyiron-${{ release }}_build-${{ release }}-Linux-x86_64.sh
+        asset_path: ./build/pyiron-${release}_build-${release}-Linux-x86_64.sh
+        asset_name: pyiron-${release}_build-${release}-Linux-x86_64.sh
         asset_content_type: application/zip
 
   build_mac:
@@ -109,8 +109,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.get_release_info.outputs.upload_url }}
-        asset_path: ./build/pyiron-${{ release }}_build-${{ release }}-MacOSX-x86_64.pkg
-        asset_name: pyiron-${{ release }}_build-${{ release }}-MacOSX-x86_64.pkg 
+        asset_path: ./build/pyiron-${release}_build-${release}-MacOSX-x86_64.pkg
+        asset_name: pyiron-${release}_build-${release}-MacOSX-x86_64.pkg 
         asset_content_type: application/zip
 
   build_win:
@@ -147,6 +147,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.get_release_info.outputs.upload_url }}
-        asset_path: ./build/pyiron-${{ release }}_build-${{ release }}-Windows-x86_64.exe
-        asset_name: pyiron-${{ release }}_build-${{ release }}-Windows-x86_64.exe
+        asset_path: ./build/pyiron-${release}_build-${release}-Windows-x86_64.exe
+        asset_name: pyiron-${release}_build-${release}-Windows-x86_64.exe
         asset_content_type: application/zip
