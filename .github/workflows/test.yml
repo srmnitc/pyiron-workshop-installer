@@ -1,0 +1,54 @@
+name: Test
+
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build_linux:
+    name: Linux 
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup conda
+      uses: s-weigand/setup-conda@v1
+      with:
+        update-conda: true
+        python-version: 3.7
+        conda-channels: anaconda, conda-forge
+    - run: conda install -y -c conda-forge constructor
+    - run: mkdir build
+    - run: constructor -v --output-dir=build --platform="linux-64" constructor
+
+  build_mac:
+    name: MacOsX
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup conda
+      uses: s-weigand/setup-conda@v1
+      with:
+        update-conda: true
+        python-version: 3.7
+        conda-channels: anaconda, conda-forge
+    - run: conda install -y -c conda-forge constructor
+    - run: mkdir build
+    - run: constructor -v --output-dir=build --platform="osx-64" constructor
+
+  build_win:
+    name: Windows
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup conda
+      uses: s-weigand/setup-conda@v1
+      with:
+        update-conda: true
+        python-version: 3.7
+        conda-channels: anaconda, conda-forge
+    - run: conda install -y -c conda-forge constructor
+    - run: mkdir build
+    - run: constructor -v --output-dir=build --platform="win-64" constructor
