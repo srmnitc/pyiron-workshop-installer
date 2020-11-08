@@ -1,5 +1,5 @@
 # Installers for pyiron 
-![Python package](https://github.com/pyiron/pyiron-installer/workflows/Python%20package/badge.svg)
+![Deployment](https://github.com/pyiron/pyiron-installer/workflows/Deploy/badge.svg)
 
 Download the release: 
 
