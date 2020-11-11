@@ -43,6 +43,6 @@ jobs:
       with:
         auto-update-conda: true
         python-version: 3.7
-    - run: conda install -y -c conda-forge constructor
+    - run: conda install -y --name test -c conda-forge constructor
     - run: mkdir build
     - run: constructor -v --output-dir=build --platform="win-64" constructor
