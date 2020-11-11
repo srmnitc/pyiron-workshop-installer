@@ -45,11 +45,11 @@ jobs:
         auto-update-conda: true
         python-version: 3.7
     - name: Build Constructor
-       shell: bash -l {0}
-       run: |
-         conda install -y --name test -c conda-forge constructor
-         mkdir build
-         constructor -v --output-dir=build --platform="linux-64" constructor
+      shell: bash -l {0}
+      run: |
+        conda install -y --name test -c conda-forge constructor
+        mkdir build
+        constructor -v --output-dir=build --platform="linux-64" constructor
     - name: Load Release URL File from release job
       uses: actions/download-artifact@v1
       with:
@@ -82,11 +82,11 @@ jobs:
         auto-update-conda: true
         python-version: 3.7
     - name: Build Constructor
-       shell: bash -l {0}
-       run: |
-         conda install -y --name test -c conda-forge constructor
-         mkdir build
-         constructor -v --output-dir=build --platform="osx-64" constructor
+      shell: bash -l {0}
+      run: |
+        conda install -y --name test -c conda-forge constructor
+        mkdir build
+        constructor -v --output-dir=build --platform="osx-64" constructor
     - name: Load Release URL File from release job
       uses: actions/download-artifact@v1
       with:
@@ -119,11 +119,11 @@ jobs:
         auto-update-conda: true
         python-version: 3.7
     - name: Build Constructor
-       shell: bash -l {0}
-       run: |
-         conda install -y --name test -c conda-forge constructor
-         mkdir build
-         constructor -v --output-dir=build --platform="win-64" constructor
+      shell: bash -l {0}
+      run: |
+        conda install -y --name test -c conda-forge constructor
+        mkdir build
+        constructor -v --output-dir=build --platform="win-64" constructor
     - name: Load Release URL File from release job
       uses: actions/download-artifact@v1
       with:
