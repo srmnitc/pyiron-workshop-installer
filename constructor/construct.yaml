@@ -7,14 +7,14 @@ channels:
   - https://conda.anaconda.org/pyiron [win]
 
 specs:
-  - python =3.8 [linux|osx]
+  - python =3.9 [linux|osx]
   - python =3.6 [win]
   - conda
   - notebook
   - jupyterlab
   - nodejs
   - nglview =2.7.7
-  - pyiron =0.3.10
+  - pyiron =0.3.13
   - sphinxdft =2.7.0 [linux]
   - lammps =2020.03.03 [linux|osx]
   - lammps =2018.03.16 [win]
