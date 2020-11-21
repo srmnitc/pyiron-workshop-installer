@@ -43,7 +43,7 @@ jobs:
     - uses: conda-incubator/setup-miniconda@v2
       with:
         auto-update-conda: true
-        python-version: 3.7
+        python-version: 3.8
     - name: Build Constructor
       shell: bash -l {0}
       run: |
@@ -80,7 +80,7 @@ jobs:
     - uses: conda-incubator/setup-miniconda@v2
       with:
         auto-update-conda: true
-        python-version: 3.7
+        python-version: 3.8
     - name: Build Constructor
       shell: bash -l {0}
       run: |
@@ -117,7 +117,7 @@ jobs:
     - uses: conda-incubator/setup-miniconda@v2
       with:
         auto-update-conda: true
-        python-version: 3.7
+        python-version: 3.8
     - name: Build Constructor
       shell: bash -l {0}
       run: |
