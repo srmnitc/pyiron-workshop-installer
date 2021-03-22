@@ -1,5 +1,5 @@
-name: pyiron-0.3.21_build
-version: 0.3.21
+name: pyiron-0.4.3_build
+version: 0.4.3
 
 channels:
   - https://conda.anaconda.org/conda-forge
@@ -7,16 +7,15 @@ channels:
   - https://conda.anaconda.org/pyiron [win]
 
 specs:
-  - python =3.9 [linux|osx]
-  - python =3.6 [win]
+  - python =3.9
   - conda
   - notebook
   - jupyterlab
   - nodejs
   - nglview =2.7.7
-  - pyiron =0.3.21
+  - pyiron =0.4.3
   - sphinxdft =2.7.0 [linux]
-  - lammps =2020.03.03 [linux|osx]
+  - lammps =2021.02.10 [linux|osx]
   - lammps =2018.03.16 [win]
 
 post_install: post_build_win.bat [win]
