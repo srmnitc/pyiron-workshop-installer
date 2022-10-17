@@ -38,20 +38,3 @@ jobs:
         conda install -y --name test -c conda-forge constructor
         mkdir build
         constructor -v --output-dir=build --platform="osx-64" constructor
-
-  build_win:
-    name: Windows
-    runs-on: windows-latest
-
-    steps:
-    - uses: actions/checkout@v2
-    - uses: conda-incubator/setup-miniconda@v2
-      with:
-        auto-update-conda: true
-        python-version: 3.8
-    - name: Build Constructor
-      shell: bash -l {0}
-      run: |
-        conda install -y --name test -c conda-forge constructor
-        mkdir build
-        constructor -v --output-dir=build --platform="win-64" constructor
