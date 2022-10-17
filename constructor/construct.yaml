@@ -34,9 +34,6 @@ specs:
   - runner
   - ipympl
   - ipywidgets
-  - pip:
-      - runnerase
-      - tensorflow <=2.7
 
 post_install: post_build_linux.sh [linux]
 post_install: post_build_mac.sh [osx]
@@ -48,7 +45,7 @@ conda_default_channels:
 
 license_file: EULA.txt
 
-welcome_image: pyiron.png [win]
+#welcome_image: pyiron.png [win]
 
 #register_python_default: True [win]
 initialize_by_default: True
