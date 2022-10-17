@@ -20,7 +20,7 @@ specs:
   - mpi4py
   - lammps =2022.06.23=*openmpi*_3
   - iprpy-data
-  - sphinxdft >=2.7.0
+  - sphinxdft >=2.7.0 [linux]
   - sphinxdft-data
   - nglview
   - seaborn
