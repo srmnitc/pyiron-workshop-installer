@@ -13,7 +13,7 @@ specs:
   - pyiron_atomistics =0.2.58
   - pyiron_contrib =0.1.5
   - calphy =1.2.4
-  - atomicrex =1.0.3
+  - atomicrex =1.0.3 [linux]
   - pyiron_gpl
   - pyiron-data
   - openmpi
@@ -21,7 +21,7 @@ specs:
   - lammps =2022.06.23=*openmpi*_3
   - iprpy-data
   - sphinxdft >=2.7.0 [linux]
-  - sphinxdft-data
+  - sphinxdft-data [linux]
   - nglview
   - seaborn
   - pyscal
