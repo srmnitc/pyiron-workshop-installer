@@ -1,5 +1,5 @@
-name: potentials_workshop-0.0.1_build
-version: 0.0.1
+name: potentials_workshop-0.0.2_build
+version: 0.0.2
 
 channels:
   - https://conda.anaconda.org/conda-forge
