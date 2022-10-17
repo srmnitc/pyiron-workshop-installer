@@ -1,24 +1,43 @@
-name: pyiron-0.4.6_build
-version: 0.4.6
+name: potentials_workshop-0.0.1_build
+version: 0.0.1
 
 channels:
   - https://conda.anaconda.org/conda-forge
   - https://repo.anaconda.com/pkgs/main
-  - https://conda.anaconda.org/pyiron [win]
 
 specs:
-  - python =3.9
-  - conda
-  - notebook
-  - jupyterlab
-  - nodejs
-  - nglview =3.0.3
+  - cmake
+  - python =3.8
   - pyiron =0.4.6
-  - sphinxdft =3.0.3 [linux]
-  - lammps =2021.09.29 [linux|osx]
-  - lammps =2018.03.16 [win]
+  - pyiron_base =0.5.25
+  - pyiron_atomistics =0.2.58
+  - pyiron_contrib =0.1.5
+  - calphy =1.2.4
+  - atomicrex =1.0.3
+  - pyiron_gpl
+  - pyiron-data
+  - openmpi
+  - mpi4py
+  - lammps =2022.06.23=*openmpi*_3
+  - iprpy-data
+  - sphinxdft >=2.7.0
+  - sphinxdft-data
+  - nglview
+  - seaborn
+  - pyscal
+  - jupyterlab
+  - jupyter-book
+  - pyiron-data
+  - sqsgenerator
+  - pymatgen
+  - ipykernel
+  - runner
+  - ipympl
+  - ipywidgets
+  - pip:
+      - runnerase
+      - tensorflow <=2.7
 
-post_install: post_build_win.bat [win]
 post_install: post_build_linux.sh [linux]
 post_install: post_build_mac.sh [osx]
 ignore_duplicate_files: True
@@ -26,16 +45,15 @@ install_in_dependency_order: True
 conda_default_channels:
   - https://conda.anaconda.org/conda-forge
   - https://repo.anaconda.com/pkgs/main
-  - https://conda.anaconda.org/pyiron [win]
 
 license_file: EULA.txt
 
 welcome_image: pyiron.png [win]
 
-register_python_default: True [win]
+#register_python_default: True [win]
 initialize_by_default: True
 
 # Linux and Windows are the defaults, but macOS uses pkg instead of sh
 installer_type: sh [linux]
 installer_type: pkg [osx]
-installer_type: exe [win]
+#installer_type: exe [win]
